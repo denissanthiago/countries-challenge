@@ -3,6 +3,10 @@
 /* Document
    ========================================================================== */
 
+   * {
+    box-sizing: border-box;
+   }
+
    :root {
       @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,400;1,500;1,700;1,900&display=swap');
    }
@@ -12,12 +16,13 @@
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
 
+  html, body {
+    height: 100%
+  }
+
   html {
     line-height: 1.15; /* 1 */
     -webkit-text-size-adjust: 100%; /* 2 */
-    font-size: 20px;
-    font-family: 'Roboto', sans-serif;
-    box-sizing: border-box;
   }
   
   /* Sections
@@ -29,6 +34,10 @@
   
   body {
     margin: 0;
+    padding: 0;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    background: #E5EAF5;
   }
   
   /**

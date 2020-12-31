@@ -3,12 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="normalize.css">
-    <script src="main.js"></script>
     <title>Countries Challenge</title>
+    <style>
+
+        .countries {
+            margin: 3rem 5rem;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(auto, 280px));
+            grid-gap: 40px;
+            justify-content:center;
+        }
+
+        @media only screen and (max-width: 700px) {
+          .countries {
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 30px;
+            justify-content:center;
+          }
+        }
+
+        @media only screen and (max-width: 500px) {
+          .countries {
+            grid-template-columns: repeat(1, 1fr);
+            margin: 1rem;
+            grid-gap: 20px;
+          }
+        }
+        
+        </style>
 </head>
 <body>
-    Countries Challenge
+    <nav-bar></nav-bar>
+    
+    <main class="countries">
+            <country-component 
+                name="Peru" 
+                image="https://www.lima2019.pe/sites/default/files/2019-07/iStock-1091870010.jpg" 
+                people="33 mill" 
+                capital="Lima"
+                ></country-component>
+            <country-component 
+                name="Brazil" 
+                image="https://cdnuploads.aa.com.tr/uploads/Contents/2019/06/17/thumbs_b_c_e8c3f43bbfaacbbd2735b686d95466b5.jpg?v=100829" 
+                people="212 mill" 
+                capital="Brasilia">
+            </country-component>
+            <country-component 
+                name="Colombia" 
+                image="https://360radio.com.co/wp-content/uploads/2020/02/Turismo-en-colombia.jpg" 
+                people="50 mill" 
+                capital="Bogotá">
+            </country-component>
+            <country-component 
+                name="Argentina" 
+                image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSv59ID0wzkj1RWXHpo4v3N_dl00tAUjDdRag&usqp=CAU" 
+                people="45 mill" 
+                capital="Buenos Aires">
+            </country-component>
+            <country-component 
+                name="Venezuela" 
+                image="https://elcomercio.pe/resizer/9ojKpYva2dh9cGf3_cKKLUg2GW4=/580x330/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/HMGQAAFQURD5RJM5F2VLJ3MYT4.jpg" 
+                people="28 mill" 
+                capital="Carcas">
+            </country-component>
+            <country-component 
+                name="Francia" 
+                image="https://static.retema.es/media/images/noticias/HEIOSHuaVIMzls9kD26XpExvcY8WMZlFA3E.jpg" 
+                people="95 mill" 
+                capital="Paris">
+            </country-component>
+            <country-component 
+                name="Chile" 
+                image="https://www.caracteristicas.co/wp-content/uploads/2018/09/chile-e1578422954245.jpg" 
+                people="19 mill" 
+                capital="Santiago">
+            </country-component>
+            <country-component 
+                name="Ecuador" 
+                image="https://img.europapress.es/fotoweb/fotonoticia_20170513083847_420.jpg" 
+                people="17 mill" 
+                capital="La paz">
+            </country-component>
+            <country-component 
+                name="Bolivia" 
+                image="https://cdnuploads.aa.com.tr/uploads/Contents/2020/06/21/thumbs_b_c_2498159259585d63a25a03db534c8b3a.jpg?v=184413" 
+                people="11 mill" 
+                capital="La paz">
+            </country-component>
+            <country-component 
+                name="Paraguay" 
+                image="https://1.bp.blogspot.com/_jETJ4h0zWww/SNnSPAvtWtI/AAAAAAAAABM/5EeAvNS2qTo/s320/ASUNCION.jpg" 
+                people="7 mill" 
+                capital="Asunción">
+            </country-component>
+            <country-component 
+                name="Mexico" 
+                image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrubD358qpuYkYYX8AEywT6x3-DqRFi1q04w&usqp=CAU" 
+                people="126 mill" 
+                capital="Ciudad Mexico">
+            </country-component>
+            <country-component 
+                name="España" 
+                image="https://saposyprincesas.elmundo.es/wp-content/uploads/2017/09/plaza-espana.jpg" 
+                people="395 mill"
+                capital="Madrid">
+            </country-component>
+
+            <modal-component open="false">
+                <h3 slot="title" class="name"></h3>
+                <div slot="capital" class="capital"></div>
+                <div slot="people" class="people"></div>
+            </modal-component>
+
+    </main>
+    <footer-component></footer-component>
+
+    <script src="./components/navbar-component.js"></script>
+    <script src="./components/footer-component.js"></script>
+    <script src="./components/country-component.js"></script>
+    <script src="./components/modal-component.js"></script>
 </body>
 </html>
