@@ -6,13 +6,10 @@ templateCountry.innerHTML = `
         grid-column-end: span 4;
         display: flex;
         flex-direction: column;
-        background-color: #39393b;
+        background-color: #fff;
         cursor: pointer;
+        border-radius: 5px;
         transition: all 0.3s ease 0s;
-      }
-
-      .country-content:hover{
-        transform: translateY(-7px);
       }
 
       .card__image-container {
@@ -35,20 +32,29 @@ templateCountry.innerHTML = `
       }
       
       .card__title {
-        margin-bottom: 20px;
+        margin:0;
       }
       
       .card__info {
         display: flex;
-        align-self: end;
+        justify-content: space-between;
+        margin: 5px 0;
         align-items: center;
       }
       
-      .card__price {
-        margin-left: auto;
+      .card__info-people {
         padding: 5px 20px;
-        background-color: #303032;
+        background-color: #845BB3;
+        color: #fff;
         border-radius: 20px;
+        margin: 0;
+        font-size: 1rem;
+        white-space: nowrap;
+      }
+
+      .card__info-capital {
+        margin: 0;
+        font-size: 1rem;
       }
 
       @media only screen and (max-width: 1000px) {
@@ -69,20 +75,17 @@ templateCountry.innerHTML = `
         }
       }
     </style>
-    <div class="country-content">
+    <div class="country-content" id="country">
         <div class="card__image-container">
             <img
-            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=80"
-            alt=""
             />
         </div>
         <div class="card__content">
-            <p class="card__title text--medium">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pellentesque quam sit amet neque posuere, in iaculis erat molestie. 
-            </p>
+            <h3 class="card__title">
+            </h3>
             <div class="card__info">
-                <p class="text--medium">30 Min</p>
-                <p class="card__price text--medium">lorem</p>
+                <p class="card__info-capital">Lima</p>
+                <span class="card__info-people">3 millones</span>
             </div>
         </div>
     </div>
@@ -93,6 +96,37 @@ class CountryComponent extends HTMLElement {
     super();
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(templateCountry.content.cloneNode(true));
+    this.shadowRoot.querySelector("img").src = this.getAttribute("image");
+    this.shadowRoot.querySelector("h3").innerText = this.getAttribute("name");
+    this.shadowRoot.querySelector("span").innerText = this.getAttribute(
+      "people"
+    );
+    this.shadowRoot.querySelector("p").innerText = this.getAttribute("capital");
+
+    this.selectCountry = this.shadowRoot.getElementById("country");
+    this.openModal = this.openModal.bind(this);
+  }
+
+  openModal() {
+    let modal = document.querySelector("modal-component");
+
+    let name = this.getAttribute("name");
+    let capital = this.getAttribute("capital");
+    let country = this.getAttribute("people");
+
+    modal.getElementsByClassName("name")[0].innerText = name;
+    modal.getElementsByClassName("capital")[0].innerHTML = capital;
+    modal.getElementsByClassName("people")[0].innerHTML = country;
+
+    modal.setAttribute("open", true);
+  }
+
+  connectedCallback() {
+    this.selectCountry.addEventListener("click", this.openModal);
+  }
+
+  disconnectedCallback() {
+    this.selectCountry.removeEventListener("click", this.openModal);
   }
 }
 
